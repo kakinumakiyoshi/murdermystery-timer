@@ -165,7 +165,6 @@
             color: #aaa;
         }
 
-        /* Fullscreen mode styles */
         .fullscreen-mode {
             position: fixed;
             top: 0;
@@ -244,7 +243,6 @@
         </div>
 
         <button class="fullscreen-btn" onclick="toggleFullscreen()">⛶ 全画面表示</button>
-        <button class="fullscreen-btn" onclick="testSound()" style="margin-top: 8px; background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.3); color: #00d4ff;">🔊 音テスト</button>
     </div>
 
     <div id="fullscreenDisplay" class="fullscreen-mode" style="display: none;">
@@ -252,10 +250,6 @@
         <div class="status" id="fullscreenStatus">待機中</div>
         <button class="exit-fullscreen" onclick="toggleFullscreen()">戻る</button>
     </div>
-
-    <audio id="alarmSound" preload="auto">
-        <source src="data:audio/wav;base64,UklGRtIzAABXQVZFZm10IBAAAAABAAEAIlYAAESsAAACABAAZGF0Ya4zAAAAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivEAAHYOLRxvKJkyJTquPvo/9j29OJUw6SVHGVYL0Pxz7v/gJdWDy5nEwcAvwOrCz8iO0bXcr+nR918GmRTCISwtPzaEPKg/gD8PPII1MSyWIEwTAgV39mnok9ug0CHIhcIYwPrAHsVPzCzWM+LF7y7+rgyHGgEndjFcOUo+/z9kPo85wDFdJ/EaIA2i/jbwmuKE1pTMTMUPwRPAZcLox1LQM9v85wP2jgTdEjIg3CtCNeY7cT+zP6o8fTZ+LSUiBxXTBkX4HeoX3d/RCskNwzjAr8BuxEHLz9SZ4APuW/zjCtsYiyVIMIc42D33P8Y+VTrgMskolhzoDnQA/PE85OzXr80MxmnBBMDtwQ3HIM+52U7mN/S8Ah0Rmx6EKjo0PDstP9k/OD1sN8IurCO+FqIIFfrW66LeJ9P/yaLDZcBywMnDPsp70wXfReyK+hYJKxcNJBEvpjdaPeE/Gj8PO/YzLCo0HqwQRwLF8+PlXNnVztjG0cECwILBPsb3zUfYpeRu8ukAWQ/+HCMpJjOFOtw+8j+6PVA4/C8sJXAYcArn+5PtM+B51P/KQ8SfwELAMcNGyTDSed2L6rn4Rwd1FYci0C26Ns88vj9hP707ATWHK80fbRIZBJD1kOfU2gTQsMdGwg7AJMF7xdrM3dYC46fwF/+SDVsbuScJMsI5fj7+Py8+KDkrMaQmHRo7DLn9VO/M4dTVCszxxObAH8CmwlrI79Dz29Xo6vZ2BbsT+yCFLMI1NzyOP5s/XjwBNtksXiEqFOsFXvdC6VTcPtGUyMjCJ8DTwMTExst81WXh4+5E/ckLshlHJuAw8zgTPvw/lz70OVEyFCjEGwQOjP8Y8WrjN9cgzavFOsEJwCjCece4z3XaJecd9aUD/RFnHzErvzSSO1E/yD/zPPY2IS7pIuMVuwct+fnq292C0oPJVsNNwI/AGsS+yiTUzt8j7XL7/QkEGM0kri8YOJs97T/xPrQ6bDN8KWYdyg9eAeDyD+Wj2EDOccacwQHAtsGkxorO/9h55VLz0gE7EM0d1CmxM+I6Bj/oP3s93zdgL20klxeJCf76tOxq38/Tfsrxw4DAWMB8w8HJ1NI+3mfrofkvCFEWSyNyLjE3Fj3RPz8/Zzt9NNsqAR+NETADqvS55hfaa89DxwrCBsBSwdvFZ82R19PjivE=" type="audio/wav">
-    </audio>
 
     <script>
         let countdown;
@@ -346,7 +340,6 @@
             document.getElementById('status').textContent = statusText;
             document.getElementById('fullscreenStatus').textContent = statusText;
             
-            // Play alarm sound
             playAlarm();
             
             if (navigator.vibrate) {
@@ -355,42 +348,49 @@
         }
 
         function playAlarm() {
-            const audio = document.getElementById('alarmSound');
-            audio.volume = 1.0;
+            // Play bell sound 3 times using Web Audio API
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             
-            // Play the beep 3 times
-            let count = 0;
-            function playBeep() {
-                if (count < 3) {
-                    audio.currentTime = 0;
-                    audio.play().catch(e => console.log('Play failed:', e));
-                    count++;
-                    setTimeout(playBeep, 600);
-                }
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const now = audioContext.currentTime;
+                    
+                    // Create a rich bell sound with multiple harmonics
+                    const frequencies = [
+                        { freq: 200, gain: 0.5 },  // Low fundamental - "ゴーン"
+                        { freq: 400, gain: 0.35 }, // Octave
+                        { freq: 600, gain: 0.2 },  // Third harmonic
+                        { freq: 800, gain: 0.15 }  // Fourth harmonic
+                    ];
+                    
+                    frequencies.forEach(({freq, gain}) => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = freq;
+                        oscillator.type = 'sine';
+                        
+                        // Bell envelope: quick attack, long decay
+                        gainNode.gain.setValueAtTime(0, now);
+                        gainNode.gain.linearRampToValueAtTime(gain, now + 0.02);
+                        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
+                        
+                        oscillator.start(now);
+                        oscillator.stop(now + 2.5);
+                    });
+                }, i * 1500); // 1.5 seconds between each gong
             }
-            playBeep();
-        }
-
-        // Test sound function
-        function testSound() {
-            const audio = document.getElementById('alarmSound');
-            audio.volume = 1.0;
-            audio.currentTime = 0;
-            audio.play()
-                .then(() => {
-                    alert('音が鳴りました！タイマーでも鳴るはずです。');
-                })
-                .catch(e => {
-                    alert('音が鳴りませんでした。iPhoneの音量を確認してください。エラー: ' + e.message);
-                });
         }
 
         // Initialize audio on first interaction
         let audioReady = false;
         document.addEventListener('click', function initAudio() {
             if (!audioReady) {
-                const audio = document.getElementById('alarmSound');
-                audio.load();
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                audioContext.resume();
                 audioReady = true;
             }
         }, { once: true });
@@ -404,11 +404,9 @@
                 fullscreenDisplay.style.display = 'flex';
                 container.style.display = 'none';
                 
-                // Sync status
                 document.getElementById('fullscreenStatus').textContent = 
                     document.getElementById('status').textContent;
                 
-                // Copy running/finished state
                 if (document.getElementById('container').classList.contains('running')) {
                     fullscreenDisplay.classList.add('running');
                 }
@@ -420,7 +418,6 @@
                 container.style.display = 'block';
             }
         }
-
     </script>
 </body>
 </html>
