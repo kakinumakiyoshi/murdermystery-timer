@@ -328,6 +328,7 @@
             align-items: center;
             gap: 10px;
             margin-bottom: 10px;
+            padding: 10px 0; /* タッチ領域を広げる */
         }
 
         .volume-label {
@@ -338,30 +339,34 @@
 
         .volume-slider {
             flex: 1;
-            height: 6px;
-            border-radius: 3px;
+            height: 8px; /* 少し太くして操作しやすく */
+            border-radius: 4px;
             background: rgba(255, 255, 255, 0.1);
             outline: none;
             -webkit-appearance: none;
+            touch-action: none;
+            cursor: pointer;
         }
 
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 16px;
-            height: 16px;
+            width: 20px; /* 大きくして操作しやすく */
+            height: 20px;
             border-radius: 50%;
             background: #00d4ff;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .volume-slider::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: #00d4ff;
             cursor: pointer;
             border: none;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .swipe-indicator {
@@ -541,7 +546,7 @@
                             </div>
                             <div class="volume-control">
                                 <span class="volume-label">音量 <span id="volumeValue">50</span>%</span>
-                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" oninput="updateVolume(this.value)">
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" oninput="updateVolume(this.value)" onchange="updateVolume(this.value)">
                             </div>
                         </div>
                     </div>
@@ -602,11 +607,19 @@
         const swipeWrapper = document.getElementById('swipeWrapper');
 
         swipeContainer.addEventListener('touchstart', (e) => {
+            // スライダーのタッチは無視
+            if (e.target.classList.contains('volume-slider')) {
+                return;
+            }
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
         }, { passive: false });
 
         swipeContainer.addEventListener('touchmove', (e) => {
+            // スライダーのタッチは無視
+            if (e.target.classList.contains('volume-slider')) {
+                return;
+            }
             // 横方向のスワイプの場合のみデフォルト動作を防ぐ
             const touchCurrentX = e.changedTouches[0].screenX;
             const touchCurrentY = e.changedTouches[0].screenY;
@@ -619,6 +632,10 @@
         }, { passive: false });
 
         swipeContainer.addEventListener('touchend', (e) => {
+            // スライダーのタッチは無視
+            if (e.target.classList.contains('volume-slider')) {
+                return;
+            }
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
