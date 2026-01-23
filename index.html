@@ -38,12 +38,14 @@
             position: relative;
             overflow: hidden;
             width: 100%;
+            touch-action: pan-y; /* 縦スクロールは許可、横は制御 */
         }
 
         .swipe-wrapper {
             display: flex;
             transition: transform 0.3s ease-out;
             width: 200%;
+            will-change: transform;
         }
 
         .swipe-panel {
@@ -300,7 +302,7 @@
         }
 
         .bgm-control-btn {
-            flex: 1;
+            width: 100%;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
@@ -376,6 +378,11 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .indicator-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .indicator-dot.active {
@@ -523,14 +530,13 @@
                         <div class="bgm-section">
                             <div class="bgm-title">🎵 BGM選択</div>
                             <div class="bgm-tracks">
-                                <button class="bgm-track-btn" onclick="selectBGM('intro')">導入</button>
-                                <button class="bgm-track-btn" onclick="selectBGM('phase1')">調査1</button>
-                                <button class="bgm-track-btn" onclick="selectBGM('phase2')">調査2</button>
-                                <button class="bgm-track-btn" onclick="selectBGM('restraint')">拘束</button>
-                                <button class="bgm-track-btn" onclick="selectBGM('ending')" style="grid-column: 1 / -1;">エンディング</button>
+                                <button class="bgm-track-btn" onclick="toggleBGMTrack('intro')">導入</button>
+                                <button class="bgm-track-btn" onclick="toggleBGMTrack('phase1')">調査1</button>
+                                <button class="bgm-track-btn" onclick="toggleBGMTrack('phase2')">調査2</button>
+                                <button class="bgm-track-btn" onclick="toggleBGMTrack('restraint')">拘束</button>
+                                <button class="bgm-track-btn" onclick="toggleBGMTrack('ending')" style="grid-column: 1 / -1;">エンディング</button>
                             </div>
                             <div class="bgm-controls">
-                                <button class="bgm-control-btn" id="bgmPlayBtn" onclick="toggleBGM()">🔇 BGM OFF</button>
                                 <button class="bgm-control-btn" id="bgmLoopBtn" onclick="toggleLoop()">🔁 ループ OFF</button>
                             </div>
                             <div class="volume-control">
@@ -590,27 +596,49 @@
         // Swipe functionality
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
         const swipeContainer = document.getElementById('swipeContainer');
         const swipeWrapper = document.getElementById('swipeWrapper');
 
         swipeContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        });
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: false });
+
+        swipeContainer.addEventListener('touchmove', (e) => {
+            // 横方向のスワイプの場合のみデフォルト動作を防ぐ
+            const touchCurrentX = e.changedTouches[0].screenX;
+            const touchCurrentY = e.changedTouches[0].screenY;
+            const diffX = Math.abs(touchCurrentX - touchStartX);
+            const diffY = Math.abs(touchCurrentY - touchStartY);
+            
+            if (diffX > diffY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         swipeContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         });
 
+        // PC用：インジケータードットをクリックで切り替え
+        document.getElementById('dot1').addEventListener('click', () => switchPanel(0));
+        document.getElementById('dot2').addEventListener('click', () => switchPanel(1));
+
         function handleSwipe() {
             const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
+            const diffX = touchStartX - touchEndX;
+            const diffY = Math.abs(touchStartY - touchEndY);
 
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0 && currentPanel === 0) {
+            // 横方向のスワイプが縦より大きい場合のみ反応
+            if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > diffY) {
+                if (diffX > 0 && currentPanel === 0) {
                     // Swipe left - go to BGM panel
                     switchPanel(1);
-                } else if (diff < 0 && currentPanel === 1) {
+                } else if (diffX < 0 && currentPanel === 1) {
                     // Swipe right - go to Timer panel
                     switchPanel(0);
                 }
@@ -754,55 +782,51 @@
         }
 
         // BGM Functions
-        function selectBGM(track) {
+        function toggleBGMTrack(track) {
             const bgmPlayer = document.getElementById('bgmPlayer');
             const buttons = document.querySelectorAll('.bgm-track-btn');
+            const clickedButton = event.target;
             
+            // 同じ曲をクリックした場合は停止
+            if (currentBGM === track && isBGMPlaying) {
+                bgmPlayer.pause();
+                isBGMPlaying = false;
+                clickedButton.classList.remove('playing');
+                return;
+            }
+            
+            // 全ボタンのスタイルをリセット
             buttons.forEach(btn => {
                 btn.classList.remove('active', 'playing');
             });
             
-            event.target.classList.add('active');
-            
+            // 新しい曲を選択
             currentBGM = track;
             bgmPlayer.src = bgmFiles[track];
+            bgmPlayer.volume = document.getElementById('volumeSlider').value / 100;
             bgmPlayer.load();
             
-            if (isBGMPlaying) {
-                bgmPlayer.play().then(() => {
-                    event.target.classList.add('playing');
-                });
-            }
+            clickedButton.classList.add('active', 'playing');
+            
+            // 再生
+            bgmPlayer.play().then(() => {
+                isBGMPlaying = true;
+            }).catch(e => {
+                console.log('Play failed:', e);
+                isBGMPlaying = false;
+                clickedButton.classList.remove('playing');
+            });
         }
 
-        function toggleBGM() {
-            const bgmPlayer = document.getElementById('bgmPlayer');
-            const playBtn = document.getElementById('bgmPlayBtn');
-            
-            if (!currentBGM) {
-                alert('先にBGMを選択してください');
-                return;
-            }
-            
-            if (isBGMPlaying) {
-                bgmPlayer.pause();
+        // BGM終了時の処理
+        document.getElementById('bgmPlayer').addEventListener('ended', () => {
+            if (!isBGMLoop) {
                 isBGMPlaying = false;
-                playBtn.textContent = '🔇 BGM OFF';
-                playBtn.classList.remove('active');
-                
                 document.querySelectorAll('.bgm-track-btn').forEach(btn => {
                     btn.classList.remove('playing');
                 });
-            } else {
-                bgmPlayer.play().then(() => {
-                    isBGMPlaying = true;
-                    playBtn.textContent = '🔊 BGM ON';
-                    playBtn.classList.add('active');
-                    
-                    document.querySelector('.bgm-track-btn.active').classList.add('playing');
-                });
             }
-        }
+        });
 
         function toggleLoop() {
             const bgmPlayer = document.getElementById('bgmPlayer');
@@ -822,8 +846,9 @@
 
         function updateVolume(value) {
             const bgmPlayer = document.getElementById('bgmPlayer');
-            bgmPlayer.volume = value / 100;
-            document.getElementById('volumeValue').textContent = value;
+            const volumePercent = parseInt(value);
+            bgmPlayer.volume = volumePercent / 100;
+            document.getElementById('volumeValue').textContent = volumePercent;
         }
 
         // Initialize audio on first interaction
