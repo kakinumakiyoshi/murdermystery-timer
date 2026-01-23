@@ -214,6 +214,34 @@
             background: rgba(255, 68, 68, 0.3);
         }
 
+        .adjust-btns {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .adjust-btn {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 10px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .adjust-btn:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .adjust-btn:active {
+            transform: translateY(0);
+        }
+
         .extra-btns {
             display: flex;
             gap: 8px;
@@ -524,6 +552,13 @@
                             <button class="control-btn stop" onclick="stopTimer()">リセット</button>
                         </div>
 
+                        <div class="adjust-btns">
+                            <button class="adjust-btn" onclick="adjustTime(-60)">-1分</button>
+                            <button class="adjust-btn" onclick="adjustTime(-10)">-10秒</button>
+                            <button class="adjust-btn" onclick="adjustTime(10)">+10秒</button>
+                            <button class="adjust-btn" onclick="adjustTime(60)">+1分</button>
+                        </div>
+
                         <div class="extra-btns">
                             <button class="extra-btn" onclick="toggleFullscreen()">⛶ 全画面</button>
                             <button class="extra-btn test" onclick="testSound()">🔔 音テスト</button>
@@ -589,6 +624,8 @@
         let isBGMPlaying = false;
         let isBGMLoop = false;
         let currentPanel = 0;
+        let startTime = null;
+        let pausedTime = 0;
 
         const bgmFiles = {
             'intro': 'bgm-intro.mp3',
@@ -675,6 +712,8 @@
             totalSeconds = minutes * 60;
             remainingSeconds = totalSeconds;
             isPaused = false;
+            startTime = Date.now();
+            pausedTime = 0;
             
             document.getElementById('container').classList.remove('finished');
             document.getElementById('container').classList.add('running');
@@ -697,14 +736,20 @@
         function runTimer() {
             countdown = setInterval(() => {
                 if (!isPaused) {
-                    remainingSeconds--;
-                    updateDisplay();
+                    // タイムスタンプベースで正確な経過時間を計算
+                    const elapsed = Math.floor((Date.now() - startTime - pausedTime) / 1000);
+                    remainingSeconds = totalSeconds - elapsed;
                     
                     if (remainingSeconds <= 0) {
+                        remainingSeconds = 0;
+                        updateDisplay();
                         timerFinished();
+                        return;
                     }
+                    
+                    updateDisplay();
                 }
-            }, 1000);
+            }, 100); // より頻繁に更新してズレを防ぐ
         }
 
         function updateDisplay() {
@@ -719,6 +764,7 @@
         function pauseTimer() {
             if (countdown && !isPaused) {
                 isPaused = true;
+                pausedTime += Date.now() - startTime - pausedTime;
                 const statusText = '一時停止中';
                 document.getElementById('status').textContent = statusText;
                 document.getElementById('fullscreenStatus').textContent = statusText;
@@ -726,11 +772,40 @@
                 document.getElementById('fullscreenDisplay').classList.remove('running');
             } else if (countdown && isPaused) {
                 isPaused = false;
+                startTime = Date.now();
                 const statusText = 'カウント中';
                 document.getElementById('status').textContent = statusText;
                 document.getElementById('fullscreenStatus').textContent = statusText;
                 document.getElementById('container').classList.add('running');
                 document.getElementById('fullscreenDisplay').classList.add('running');
+            }
+        }
+
+        function adjustTime(seconds) {
+            if (!countdown) {
+                return; // タイマーが動いていない場合は何もしない
+            }
+            
+            remainingSeconds += seconds;
+            
+            // 0秒未満にはしない
+            if (remainingSeconds < 0) {
+                remainingSeconds = 0;
+            }
+            
+            // タイムスタンプを調整
+            if (!isPaused) {
+                const elapsed = totalSeconds - remainingSeconds;
+                startTime = Date.now() - (elapsed * 1000) - pausedTime;
+            } else {
+                pausedTime = (totalSeconds - remainingSeconds) * 1000;
+            }
+            
+            updateDisplay();
+            
+            // 0秒になったら終了
+            if (remainingSeconds <= 0) {
+                timerFinished();
             }
         }
 
@@ -740,6 +815,8 @@
             isPaused = false;
             remainingSeconds = 0;
             totalSeconds = 0;
+            startTime = null;
+            pausedTime = 0;
             const timeString = '00:00';
             const statusText = '待機中';
             
